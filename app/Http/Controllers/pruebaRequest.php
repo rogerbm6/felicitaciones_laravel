@@ -18,6 +18,7 @@ class pruebaRequest extends Controller
         //return dd($request->url());
         //return dd($request->input('titulo'));
         //return dd($request->fullUrl());
+        return response('Respuesta', 200);
     }
 
     /**
