@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PruebaController extends Controller
+class pruebaRequest extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return 'index';
+        //dd($request);
+        //return dd($request->path());
+        //return dd($request->url());
+        //return dd($request->input('titulo'));
+        //return dd($request->fullUrl());
     }
 
     /**
@@ -23,7 +27,7 @@ class PruebaController extends Controller
      */
     public function create()
     {
-        return 'create';
+        //
     }
 
     /**
@@ -34,7 +38,7 @@ class PruebaController extends Controller
      */
     public function store(Request $request)
     {
-        return 'store';
+        //
     }
 
     /**
@@ -45,7 +49,7 @@ class PruebaController extends Controller
      */
     public function show($id)
     {
-        return 'show';
+        //
     }
 
     /**
@@ -56,7 +60,7 @@ class PruebaController extends Controller
      */
     public function edit($id)
     {
-        return 'edit';
+        //
     }
 
     /**
@@ -68,7 +72,7 @@ class PruebaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'update';
+        //
     }
 
     /**
@@ -79,6 +83,6 @@ class PruebaController extends Controller
      */
     public function destroy($id)
     {
-        return 'destroy';
+        //
     }
 }

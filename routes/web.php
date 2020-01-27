@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/' ,'HomeController@getHome');
 
-Route::resource ('/prueba', 'PruebaController');
+//Route::view('/', 'home')->middleware('language');
+
+Route::get('/pruebaRequest' ,'pruebaRequest@index')->middleware('language');
+
+Route::get('/' ,'HomeController@getHome')->middleware('language');
+
 
 Route::get('/login', function () {
     return view('/auth/login');
