@@ -14,8 +14,6 @@
 
 //Route::view('/', 'home')->middleware('language');
 
-Route::get('/pruebaRequest' ,'pruebaRequest@index')->middleware('language');
-
 Route::get('/' ,'HomeController@getHome')->middleware('language');
 
 
