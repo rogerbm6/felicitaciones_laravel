@@ -32,6 +32,15 @@ Route::post('/logout', function () {
     return view('home');
 });
 
+Route::get('/probarconexion', function()
+{
+  try {
+    DB::connection()->getPdo();
+  } catch (\Exception $e) {
+    die("no se puede conectar a la base de datos. Revise su configuracion".$e);
+  }
+
+});
 //PRUEBAS
 /*
 Route::get('/', function () {
