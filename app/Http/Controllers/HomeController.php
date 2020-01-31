@@ -9,6 +9,6 @@ class HomeController extends Controller
     //vista de inicio
     public function getHome()
     {
-        return view('home');
+        return redirect()->action('CatalogController@getIndex');
     }
 }
