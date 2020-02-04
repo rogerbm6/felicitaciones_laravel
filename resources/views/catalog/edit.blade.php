@@ -13,7 +13,7 @@
                     {{ method_field('PUT') }}
                     <fieldset class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Enter name">
+                        <input type="text" class="form-control" id="nombre" placeholder="Enter name" value={{$cliente->nombre}}>
                     </fieldset>
 
                     <fieldset class="form-group">
@@ -23,12 +23,13 @@
 
                     <fieldset class="form-group">
                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control">
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control"
+                        value={{$cliente->fecha_nacimiento}}>
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label for="correo">Correo electronico</label>
-                        <input type="email" name="correo" id="email" class="form-control">
+                        <input type="email" name="correo" id="email" class="form-control" value={{$cliente->correo}}>
                     </fieldset>
 
                     <div class="form-group text-center">
