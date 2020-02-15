@@ -8,17 +8,17 @@
                 Modificar cliente
             </div>
             <div class="card-body" style="padding:30px">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PUT') }}
                     <fieldset class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Enter name" value={{$cliente->nombre}}>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Enter name" value={{$cliente->nombre}}>
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label for="imagen">Imagen</label>
-                        <input type="file" name="imagen" class="form-control" id="imagen">
+                        <input type="file" name="imagen" class="form-control">
                     </fieldset>
 
                     <fieldset class="form-group">

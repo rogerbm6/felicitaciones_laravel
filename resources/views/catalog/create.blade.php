@@ -8,16 +8,16 @@
                 Añadir cliente
             </div>
             <div class="card-body" style="padding:30px">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                   @csrf
                     <fieldset class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Enter name">
+                        <input type="text" class="form-control" name="nombre" placeholder="Enter name">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label for="imagen">Imagen</label>
-                        <input type="file" name="imagen" class="form-control" id="imagen">
+                        <input type="file" name="imagen">
                     </fieldset>
 
                     <fieldset class="form-group">
@@ -35,7 +35,7 @@
                             Añadir cliente
                         </button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
