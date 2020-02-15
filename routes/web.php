@@ -14,32 +14,40 @@
 
 //Route::view('/', 'home')->middleware('language');
 
-Route::get('/' ,'HomeController@getHome')->middleware('language');
+//Route::get('/' ,'HomeController@getHome')->middleware('language');
 
 
 Route::get('/login', function () {
     return view('/auth/login');
 });
-
-Route::get('/catalog', 'CatalogController@getIndex');
-
-Route::get('/catalog/show/{id}','CatalogController@getShow');
-
-Route::get('/catalog/create', 'CatalogController@getCreate');
-
-Route::get('/catalog/edit/{id}', 'CatalogController@getEdit');
-Route::post('/logout', function () {
-    return view('home');
+Route::get('/', function () {
+    return view('/auth/login');
 });
 
-Route::get('/probarconexion', function()
-{
-  try {
-    DB::connection()->getPdo();
-  } catch (\Exception $e) {
-    die("no se puede conectar a la base de datos. Revise su configuracion".$e);
-  }
+//rutas para verificar
+Auth::routes(['verify' => 'true']);
 
+Route::group(['middleware' => 'verified'], function () {
+
+  Route::get('/catalog', 'CatalogController@getIndex')->middleware('auth');
+
+  Route::get('/catalog/show/{id}','CatalogController@getShow')->middleware('auth');
+
+  Route::get('/catalog/create', 'CatalogController@getCreate')->middleware('auth');
+
+  Route::get('/catalog/edit/{id}', 'CatalogController@getEdit')->middleware('auth');
+
+  Route::get('logout', 'Auth\LoginController@logout');
+
+  Route::get('/probarconexion', function()
+  {
+    try {
+      DB::connection()->getPdo();
+    } catch (\Exception $e) {
+      die("no se puede conectar a la base de datos. Revise su configuracion".$e);
+    }
+
+  })->middleware('auth');
 });
 //PRUEBAS
 /*
@@ -65,3 +73,7 @@ Route::get('/fecha3', function () {
     return view('fecha')->with('dia', date('d'))->with('mes', date('m'))->with('ano', date('o'));
 });
 */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
