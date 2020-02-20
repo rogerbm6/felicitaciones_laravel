@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ClienteFormRequest;
 
 class CatalogController extends Controller
 {
@@ -30,29 +30,8 @@ class CatalogController extends Controller
         return view('/catalog/create');
     }
 
-    public function postCreate(Request $request)
+    public function postCreate(ClienteFormRequest $request)
     {
-        $validator = Validator::make($request->all(),
-        [
-            'nombre'            => 'required|max:45',
-            'imagen'            => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'fecha_nacimiento'  => 'required|date',
-            'correo'            => 'email| required'
-        ]/*,  Mensajes personalizados ¡¡Alternativa!!
-        [
-            'required'        => 'Es necesario rellenar el campo :attribute',
-            'nombre.max'      => 'El campo :attribute tiene como maximo :max caracteres',
-            'imagen.mimes'    => 'El campo :attribute solo puede ser de tipos jpeg,png,jpg,gif',
-            'imagen.image'    => 'El campo :attribute solo puede ser una imagen :mimes',
-            'imagen.max'      => 'El campo :attribute solo puede ser una imagen de :max',
-            'date'            => 'Es necesario rellenar el campo :attribute con una fecha',
-            'correo.email'    => 'Es necesario rellenar el campo :attribute con un email valido'
-        ] */);
-
-        if ($validator->fails())
-        {
-          return redirect()->action('CatalogController@getCreate')->withErrors($validator)->withInput();
-        }
 
         $id = DB::table('clientes')->insertGetId(
             ['nombre' => $request->input('nombre'),
