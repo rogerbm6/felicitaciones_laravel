@@ -18,7 +18,7 @@
 
 
 Route::get('/login', function () {
-    return view('/auth/login');
+    return view('/auth/login')->middleware('language');
 });
 Route::get('/', function () {
     return view('/auth/login');
@@ -29,17 +29,17 @@ Auth::routes(['verify' => 'true']);
 
 Route::group(['middleware' => 'verified'], function () {
 
-  Route::get('/catalog', 'CatalogController@getIndex')->middleware('auth');
+  Route::get('/catalog', 'CatalogController@getIndex')->middleware('language')->middleware('auth');
 
   Route::delete('/catalog/delete/{id}', 'CatalogController@putDelete')->middleware('auth');
 
-  Route::get('/catalog/show/{id}','CatalogController@getShow')->middleware('auth');
+  Route::get('/catalog/show/{id}','CatalogController@getShow')->middleware('language')->middleware('auth');
 
-  Route::get('/catalog/create', 'CatalogController@getCreate')->middleware('auth');
+  Route::get('/catalog/create', 'CatalogController@getCreate')->middleware('language')->middleware('auth');
 
-  Route::post('/catalog/create', 'CatalogController@postCreate')->middleware('auth');
+  Route::post('/catalog/create', 'CatalogController@postCreate')->middleware('language')->middleware('auth');
 
-  Route::get('/catalog/edit/{id}', 'CatalogController@getEdit')->middleware('auth');
+  Route::get('/catalog/edit/{id}', 'CatalogController@getEdit')->middleware('language')->middleware('auth');
 
   Route::put('/catalog/edit/{id}', 'CatalogController@putEdit')->middleware('auth');
 
@@ -55,30 +55,7 @@ Route::group(['middleware' => 'verified'], function () {
 
   })->middleware('auth');
 });
-//PRUEBAS
-/*
-Route::get('/', function () {
-    return view('prueba');
-});
 
-Route::get('/hola', function () {
-    return view('home');
-});
-Route::get('/fecha', function () {
-    return view('fecha', ['dia' => date('d'), 'mes' => date('m'), 'ano' => date('o')]);
-});
-
-Route::get('/fecha2', function () {
-  $dia= date('d');
-  $mes=date('m');
-  $ano=date('o');
-    return view('fecha', compact("dia", "mes", "ano"));
-});
-
-Route::get('/fecha3', function () {
-    return view('fecha')->with('dia', date('d'))->with('mes', date('m'))->with('ano', date('o'));
-});
-*/
 
 Auth::routes();
 

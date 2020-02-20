@@ -7,12 +7,29 @@
             <div class="card-header text-center">
                 Añadir cliente
             </div>
+
+            @if ($errors->any())
+
+            <div class="row justify-content-center">
+                <div class="col-sm-7">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            @endif
+
             <div class="card-body" style="padding:30px">
                 <form method="post" enctype="multipart/form-data">
-                  @csrf
+                    @csrf
                     <fieldset class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" placeholder="Enter name">
+                        <input type="text" class="form-control" name="nombre" placeholder="Enter name" value={{old('nombre')}}>
                     </fieldset>
 
                     <fieldset class="form-group">
@@ -22,12 +39,12 @@
 
                     <fieldset class="form-group">
                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control">
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control"value={{old('fecha_nacimiento')}}>
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label for="correo">Correo electronico</label>
-                        <input type="email" name="correo" id="email" class="form-control">
+                        <input type="text" name="correo" id="email" class="form-control" value={{old('correo')}}>
                     </fieldset>
 
                     <div class="form-group text-center">
